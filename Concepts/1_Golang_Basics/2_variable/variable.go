@@ -4,7 +4,7 @@ import "fmt"
 
 var proceedExit int=1;
 
-
+const count=7
 
 func main() {
 	// var variable_name variable_type/data_type
@@ -32,6 +32,22 @@ func main() {
 	var ExportedVariable="Hello I exported from variable file"
 	var exportedVariable= "Hello I want to be exported"
 	fmt.Println(ExportedVariable , exportedVariable)
+
+	const myName="Aditya"
+	fmt.Println(myName)
+	fmt.Println("Count before declaration inside func:", count)
+	count:=9
+	fmt.Println(count)
+
+	// we can group multiple constants using ()
+
+	const (
+		port = 3000
+		host = "localhost:"
+
+	)
+
+	fmt.Println(host,port)
 	
 }
 

@@ -5,6 +5,12 @@ import "fmt"
 func main() {
 
 	fmt.Println(summation(3, 4, 5, 6))
+
+	// we can also provide slice as an argument for numbers, see  below
+
+	nums := []int{3, 4, 5, 6}
+
+	fmt.Println("Sum of slice elements:", summation(nums...))
 }
 
 /*

@@ -22,6 +22,16 @@ func main() {
 	var languages = []string{"Golang", "TypeScript", "Java", "Python"}
 	printSlice(languages)
 	// printStringSlice(languages)
+
+	userOne := sliceElement[string]{
+		element: []string{"Hello", "Namaste", "Bonjur"},
+	}
+	fmt.Println(userOne)
+
+	numbers := sliceElem[int]{
+		numbers: []int{10, 23, 11, 2},
+	}
+	fmt.Println(numbers)
 }
 
 // func printSlice(items []int) {
@@ -55,3 +65,24 @@ func printSlice[T int | string](items []T) {
 		fmt.Println(item)
 	}
 }
+
+// we can use generics along with struct
+
+type sliceElement[T int | string | bool] struct {
+	element []T
+}
+
+// we can use comparable type instead of defined each type manually one by one
+type sliceElem[T comparable] struct {
+	numbers []T
+}
+
+/*
+type comparable interface{ comparable }
+
+comparable is an interface that is implemented by all comparable types
+(booleans, numbers, strings, pointers, channels, arrays of comparable types,
+structs whose fields are all comparable types).
+The comparable interface may only be used as a type parameter constraint,
+not as the type of a variable.
+*/

@@ -15,6 +15,15 @@ func calcSum(result chan int, num1 int, num2 int) {
 	result <- numResult
 }
 
+// goroutine synchronizer: how to use sychronization via channel
+
+func executeTask(done chan bool) {
+	defer func() { done <- true }()
+	fmt.Println("Processing...")
+	// done <- true // here we will face an issue, what if we got some error before this, then it will never gonna execute.
+	// to tackle this we can use the defer to handle the channel
+}
+
 func main() {
 	// channels are the pipelines that make it possible to send and receive values with the channel operator, <-.
 	// basically, channels are a way to communicate between goroutines. You can send values into channels from one goroutine and receive those values into another goroutine.
@@ -46,6 +55,10 @@ func main() {
 
 	res := <-result
 	fmt.Println(res)
+
+	done := make(chan bool)
+	go executeTask(done)
+	<-done
 }
 
 /*
@@ -60,4 +73,8 @@ Therefore, an unbuffered channel works like a direct handoff or handshake betwee
  which results in a deadlock. To avoid this, sending and receiving should happen concurrently,
   usually by using another goroutine.
 
+*/
+
+/*
+- if you have single channel then use channel method, otherwise use waitgroup to handle it better with add done and wait method
 */

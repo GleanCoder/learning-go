@@ -76,5 +76,5 @@ Therefore, an unbuffered channel works like a direct handoff or handshake betwee
 */
 
 /*
-- if you have single channel then use channel method, otherwise use waitgroup to handle it better with add done and wait method
+- if you have single channel then use channel method, otherwise use waitgroup to handle it better with add done and wait method.
 */

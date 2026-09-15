@@ -2,8 +2,17 @@ package main
 
 import "fmt"
 
+// send channel
+
 func greetPeoples(name chan string) {
 	fmt.Println(<-name)
+}
+
+// Recieve channel:
+
+func calcSum(result chan int, num1 int, num2 int) {
+	numResult := num1 + num2
+	result <- numResult
 }
 
 func main() {
@@ -31,6 +40,12 @@ func main() {
 	go greetPeoples(nameChannel)
 
 	nameChannel <- "Aditya"
+
+	result := make(chan int)
+	go calcSum(result, 5, 6)
+
+	res := <-result
+	fmt.Println(res)
 }
 
 /*

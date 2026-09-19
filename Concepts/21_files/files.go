@@ -45,4 +45,14 @@ func main() {
 		fmt.Println("Buffer Data:", d, "=", string(bufferStorage[i]))
 	}
 
+	// way 2: Read data using ReadFile method
+
+	data, err := os.ReadFile("example.txt") // this method is used to read the data from the file and store it into the variable
+	// ReadFile method is not suitable for large files because it reads the entire file into memory, which can lead to high memory usage and potential performance issues. For large files, it's better to read the file in chunks or use a buffered reader.
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(string(data))
+
 }

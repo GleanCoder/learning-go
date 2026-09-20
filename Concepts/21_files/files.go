@@ -1,5 +1,11 @@
 package main
 
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
+
 func main() {
 
 	// here we will practice some operation related  to files, for that we have to need OS package
@@ -80,5 +86,68 @@ func main() {
 
 	// file.WriteString("Hey Go")
 	// file.WriteString(", you're a great language")
+
+	// whenever we work with files, we work with the binary data, so we can also write the binary data into the file
+
+	// we will add it using byte of slice.
+
+	// byteData :=
+	// 	[]byte("Golang Developers")
+
+	// file, err := os.Create("example_three.txt")
+
+	// if err != nil {
+	// 	panic(err)
+	// }
+
+	// file.Write(byteData)
+
+	// let's see how can we transfer the data from one file to another file using buffer io package.
+
+	sourceFile, err := os.Open("example.txt")
+
+	if err != nil {
+		panic(err)
+	}
+
+	defer sourceFile.Close()
+
+	destFile, err := os.Create("example_four.txt")
+
+	if err != nil {
+		panic(err)
+	}
+	defer destFile.Close()
+
+	reader := bufio.NewReader(sourceFile)
+	writer := bufio.NewWriter(destFile)
+
+	for {
+		byt, err := reader.ReadByte()
+
+		if err != nil {
+			if err.Error() != "EOF" {
+				panic(err)
+			}
+
+			break
+		}
+
+		erro := writer.WriteByte(byt)
+
+		if erro != nil {
+			panic(erro)
+		}
+
+	}
+	writer.Flush()
+
+	fmt.Println("Writing new file succesfully done!")
+
+	removeError := os.Remove("example_demo.txt")
+
+	if removeError != nil {
+		panic(removeError)
+	}
 
 }

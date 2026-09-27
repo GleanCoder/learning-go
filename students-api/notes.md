@@ -32,3 +32,23 @@ SQLite is a file-based SQL database, which means the entire database—including
 - http server setup, so that's a yaml file so we have ton take care of intended. we can do nesting using tab
 
 - for now this much config is enough, later on we can add more configs like timeout and all the stuffs.
+- keep config file inside gitignore
+
+
+### 4. now we have to serialize those config into go project so they can access them whenever we run the go project. 
+
+- we have to serialize it within a data structure or struct so we can use them wherever we want them to use.
+- for that we will create a internal or pkg folder within which we will keep all the internal packages which are going to be used within our project.
+- inside internal we will create a config file inside which we will create config.go to setup the configs
+
+
+### 5. How to serialize yaml config with struct
+
+- we can do it manually but there is a package we can use, package name is golang clean env go get -u github.com/ilyakaznacheev/cleanenv
+- we can use some annotation on struct using `` backtick
+```bash
+Env     string `yaml:"env" env:"ENV" env-required:"true"`
+```
+- here we have to use `` to give annotation then we can map it with yaml relative filed by using yaml:"env" here we are mapping it with yaml file's env var similarly with env files ENV and to make it required true we have used env-required true
+
+- see config.go file how we parse those config

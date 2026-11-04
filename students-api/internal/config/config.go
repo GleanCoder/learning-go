@@ -33,6 +33,8 @@ func MustLoad() *Config {
 	// then we will check if it's empty then anyone pass it through termanal arguments during running the program which we pass in commands
 	// go run main.go -config-path xyz even if the flags were not present then we will throw fatal error to not go further in application
 	if configPath == "" {
+
+		//flag.String() method registers a string-type command-line flag and returns a pointer to a string variable (*string) where the flag's value will be stored once parsed.
 		flags := flag.String("config", "", "path to the config")
 		flag.Parse()
 		// then pass this to configPath

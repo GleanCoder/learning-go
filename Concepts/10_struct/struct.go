@@ -16,7 +16,10 @@ type bankAccount struct {
 
 // we have to add a pointer reciever, which will help us to modify the struct
 // convention rule of reciever: first a single character from the struct name's first char then struct name, how we written below
+//A pointer receiver in Go is a method receiver declared with an asterisk (*T), meaning the method operates directly on the original instance of the type rather than a copy.
 
+//1. Value Receiver (T): Operates on a copy of the value and cannot modify the original struct's fields.
+//2. Pointer Receiver (*T): Operates on a pointer to the value and can modify the original struct's fields.
 func (b *bankAccount) debitAmount(amount float32) float32 {
 	b.balance = b.balance - amount
 	return b.balance
